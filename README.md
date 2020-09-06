@@ -1,8 +1,7 @@
-# ayasofya-swagger-generator
-Simple GUI tool for avoiding suffering from indent errors in swagger.yml file
+# Ayasofya-swagger-generator
+Simple GUI tool for avoiding suffering from indent errors in swagger.yml file 
 # Requirements
  - PHP YAML 
-
 # Installaion
 After createing and configuring swagger.yml :
  - in your laravel project root directory  `/public` folder clone the tool via `git clone https://github.com/ahmedsabry1996/ayasofya-swagger-generator.git`
