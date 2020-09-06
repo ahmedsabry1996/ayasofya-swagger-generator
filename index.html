@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/css/bootstrap.min.css" integrity="sha512-SgMx4umLagm9ctwfuw66X5M/nLu7gTZrh8gYKfzxgHQBxQeIelAG2hyfnjveLfkuRProaaw55KKPCFlIulOzjQ==" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayasofya Swagger generator</title>
+
+</head>
+<body>
+
+    <div id="app">
+        <div class='container'>
+            <div class="row">
+                <h2 class="text-center">
+                    Ayasofya Swagger generator
+                </h2>
+
+
+                <div class="col-md-6">
+                    <form action="#">
+                        <label for="">Url :</label>
+
+                    <div class="form-group">
+                        <input required type="text" v-model.trim="url" placeholder="/url/path" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Method :</label>
+                        <select  class="form-control" v-model.trim="method">
+                          <option disabled selected>Method</option>
+                          <option value="get">GET</option>
+                          <option value="post">POST</option>
+                          <option value="put">PUT</option>
+                          <option value="delete">DELETE </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Summary :</label>
+                        <input required type="text" v-model.trim="summary" placeholder="NEW LINK for u"
+                         class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tags :</label>
+                        <input required type="text" v-model.trim="tagsText" placeholder="Users, Email"
+                         class="form-control">
+                    </div>
+
+                    <div class="form-group text-center" >
+                        <button type="button" class="btn btn-info" @click="addRequest">Add request field</button>
+                    </div>
+                    <div class="form-group text-center" >
+                        <button :disabled="!basicDataFilled" class="btn btn-success" @click="createUrl">Add url</button>
+                    </div>
+
+                </form>
+                </div>
+                <div class="col-md-6">
+                    <h3 v-if="parameters.length > 0">Parameters</h3>
+                    <template v-for="(param,index) in parameters">
+                        <div class="form-group">
+                            <label for="">{{param.name}}</label>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="">type :</label>
+                            <select  class="form-control"  v-model="parameters[index]['schema']['type']">
+
+                              <option value="integer">integer</option>
+                              <option value="number">number</option>
+                              <option value="string">string</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Description :</label>
+                            <input type="text" class="form-control" placeholder="description" v-model.trim="parameters[index]['description']">
+                        </div>
+                        <div><hr></div>
+                    </template>
+
+                    <h3 v-if="requestBody.length > 0">Request Body</h3>
+                    <template v-for="(request,index) in requestBody">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="name" v-model.trim="requestBody[index]['name']">
+                        </div>
+                        <div class="form-group">
+
+                            <label for="">type :</label>
+                            <select  class="form-control"  v-model="requestBody[index]['type']">
+
+                              <option value="integer">integer</option>
+                              <option value="number">number</option>
+                              <option value="string">string</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="example" v-model.trim="requestBody[index]['example']">
+                        </div>
+                        <div class="text-left">
+                            <button class="btn btn-danger" type="button" @click="removeRequest(index)">Remove</button>
+                        </div>
+                        <div><hr></div>
+                    </template>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/ayasofya-swagger-generator/index.js"></script>
+</body>
+</html>
