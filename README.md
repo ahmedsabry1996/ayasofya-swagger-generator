@@ -1,5 +1,5 @@
 # Ayasofya-swagger-generator
-Simple GUI tool for avoiding suffering from indent errors in swagger.yml file 
+A simple tool for laravel projects to avoiding suffering from indent errors in swagger.yaml file
 # Requirements
  - PHP YAML 
 # Installaion
